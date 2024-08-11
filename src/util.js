@@ -4,7 +4,6 @@ export const playAudio = (isPlaying, audioRef) => {
     console.log('PLayAudio = isPlaying -> ', isPlaying);
     console.log('Utils making a promise for audio', audioRef.current);
     const playPromise = audioRef.current.play();
-    console.log('playPromise', playPromise);
 
     if (playPromise != null) {
       playPromise
