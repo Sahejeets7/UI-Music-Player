@@ -14,7 +14,6 @@ export const playAudio = (isPlaying, audioRef) => {
         })
         .catch(error => console.log(error));
     } else {
-      console.log('promise is null');
     }
   }
 };
