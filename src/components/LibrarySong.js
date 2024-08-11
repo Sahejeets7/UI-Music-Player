@@ -39,6 +39,7 @@ const LibrarySong = ({
     await audioRef.current.pause();
     playAudio(isPlaying, audioRef);
   };
+  
   return (
     <div
       onClick={songSelectHandler}
