@@ -37,10 +37,6 @@ const LibrarySong = ({
     //Play audio
 
     await audioRef.current.pause();
-    // console.log(
-    //   'before calling Utils function audioRef.current -> ',
-    //   audioRef.current,
-    // );
     playAudio(isPlaying, audioRef);
   };
   return (
