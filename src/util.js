@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 export const playAudio = (isPlaying, audioRef) => {
   if (isPlaying) {
-    console.log('PLayAudio = isPlaying -> ', isPlaying);
-    console.log('Utils making a promise for audio', audioRef.current);
     const playPromise = audioRef.current.play();
 
     if (playPromise != null) {
