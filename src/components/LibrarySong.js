@@ -1,5 +1,7 @@
-import React from "react";
-import { playAudio } from "../util";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react';
+import { playAudio } from '../util';
 
 const LibrarySong = ({
   name,
@@ -13,11 +15,11 @@ const LibrarySong = ({
   setSongs,
   active,
 }) => {
-  const songSelectHandler = () => {
-    const selectedSong = songs.filter((state) => state.id === id);
+  const songSelectHandler = async () => {
+    const selectedSong = songs.filter(state => state.id === id);
     setCurrentSong({ ...selectedSong[0] });
     //Set Active in library
-    const newSongs = songs.map((song) => {
+    const newSongs = songs.map(song => {
       if (song.id === id) {
         return {
           ...song,
@@ -33,13 +35,15 @@ const LibrarySong = ({
     setSongs(newSongs);
 
     //Play audio
+
+    await audioRef.current.pause();
     playAudio(isPlaying, audioRef);
   };
+  
   return (
     <div
       onClick={songSelectHandler}
-      className={`library-song ${active ? "selected" : ""}`}
-    >
+      className={`library-song ${active ? 'selected' : ''}`}>
       <img src={cover} alt="" />
       <div className="song-description">
         <h3>{name}</h3>

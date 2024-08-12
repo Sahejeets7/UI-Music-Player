@@ -1,14 +1,12 @@
-import React, { useState, useRef } from "react";
-import "./styles/app.scss";
-//Import Components
-import Player from "./components/Player";
-import Song from "./components/Song";
-import Library from "./components/Library";
-import Nav from "./components/Nav";
-//Import data
-import chillhop from "./data";
-//Util
-import { playAudio } from "./util";
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { useState, useRef } from 'react';
+import './styles/app.scss';
+import Player from './components/Player';
+import Song from './components/Song';
+import Library from './components/Library';
+import Nav from './components/Nav';
+import chillhop from './data';
+import { playAudio } from './util';
 
 function App() {
   //Ref
@@ -25,7 +23,7 @@ function App() {
   });
   const [libraryStatus, setLibraryStatus] = useState(false);
 
-  const timeUpdateHandler = (e) => {
+  const timeUpdateHandler = e => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
 
@@ -41,12 +39,12 @@ function App() {
     });
   };
   const songEndHandler = async () => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    let currentIndex = songs.findIndex(song => song.id === currentSong.id);
     await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     playAudio(isPlaying, audioRef);
   };
   return (
-    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
+    <div className={`App ${libraryStatus ? 'library-active' : ''}`}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
       <Song isPlaying={isPlaying} currentSong={currentSong} />
       <Player
@@ -73,9 +71,7 @@ function App() {
         onTimeUpdate={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
-        onEnded={songEndHandler}
-       
-      ></audio>
+        onEnded={songEndHandler}></audio>
     </div>
   );
 }

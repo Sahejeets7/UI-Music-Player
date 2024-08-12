@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 export const playAudio = (isPlaying, audioRef) => {
   if (isPlaying) {
     const playPromise = audioRef.current.play();
-    if (playPromise !== undefined) {
+
+    if (playPromise != null) {
       playPromise
-        .then((audio) => {
+        .then(_ => {
+          audioRef.current.pause();
           audioRef.current.play();
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
+    } else {
     }
   }
 };

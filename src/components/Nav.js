@@ -1,6 +1,6 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = ({ setLibraryStatus, libraryStatus }) => {
   const openLibraryHandler = () => {
@@ -11,7 +11,7 @@ const Nav = ({ setLibraryStatus, libraryStatus }) => {
     <nav>
       <h1>Vibes</h1>
       <button
-        className={libraryStatus ? "library-active" : ""}
+        className={libraryStatus ? 'library-active' : ''}
         onClick={openLibraryHandler}
       >
         Library
