@@ -3,6 +3,46 @@
 import React from 'react';
 import { playAudio } from '../util';
 
+type LibrarySongProps = {
+  name: string;
+  artist: string;
+  cover: string;
+  id: string;
+  setCurrentSong: (newSongs: {
+    name?: string;
+    cover?: string;
+    artist?: string;
+    audio?: string;
+    color?: string[];
+    id?: string;
+    active?: boolean;
+    currentTime?: number;
+  }) => void;
+  songs: Array<{
+    name: string;
+    cover: string;
+    artist: string;
+    audio: string;
+    color: string[];
+    id: string;
+    active: boolean;
+    currentTime?: number;
+  }>;
+  audioRef: any;
+  isPlaying: boolean;
+  setSongs: (newSong: Array<{
+    name: string;
+    cover: string;
+    artist: string;
+    audio: string;
+    color: string[];
+    id: string;
+    active: boolean;
+    currentTime?: number;
+  }>) => void;
+  active: boolean;
+};
+
 const LibrarySong = ({
   name,
   artist,
@@ -14,7 +54,7 @@ const LibrarySong = ({
   isPlaying,
   setSongs,
   active,
-}) => {
+}: LibrarySongProps) => {
   const songSelectHandler = async () => {
     const selectedSong = songs.filter(state => state.id === id);
     setCurrentSong({ ...selectedSong[0] });
@@ -39,7 +79,7 @@ const LibrarySong = ({
     await audioRef.current.pause();
     playAudio(isPlaying, audioRef);
   };
-  
+
   return (
     <div
       onClick={songSelectHandler}

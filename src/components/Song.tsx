@@ -1,6 +1,20 @@
 import React from 'react';
 
-const Song = ({currentSong, isPlaying}) => {
+type SongProps = {
+  currentSong: {
+    name: string;
+    cover: string;
+    artist: string;
+    audio: string;
+    color: string[];
+    id: string;
+    active: boolean;
+    currentTime?: number;
+  };
+  isPlaying: boolean;
+};
+
+const Song = ({ currentSong, isPlaying }: SongProps) => {
   return (
     <div className="song-container">
       <img
