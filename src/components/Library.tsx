@@ -1,25 +1,26 @@
 import React from 'react';
 
 import LibrarySong from './LibrarySong';
+import { Reorder, useDragControls } from 'framer-motion';
 
-type song = {
+export type Song = {
   name: string;
   cover: string;
   artist: string;
   audio: string;
-  color: string[];
+  color: Array<string>;
   id: string;
   active: boolean;
   currentTime?: number;
 };
 
 type LibraryProps = {
-  songs: Array<song>;
-  setCurrentSong: Array<song>;
+  songs: Array<Song>;
   audioRef: React.MutableRefObject<HTMLAudioElement>;
   isPlaying: boolean;
-  setSongs: Array<song>;
-  libraryStatus: Array<song>;
+  libraryStatus: boolean;
+  setCurrentSong: (song: Song) => void;
+  setSongs: (newSong: Array<Song>) => void;
 };
 
 const Library = ({
@@ -30,25 +31,35 @@ const Library = ({
   setSongs,
   libraryStatus,
 }: LibraryProps) => {
+  const controls = useDragControls();
+
   return (
     <div className={`library ${libraryStatus ? 'active-library' : ' '}`}>
       <h2>Library</h2>
-      <div className="library-songs">
-        {songs.map(song => (
-          <LibrarySong
-            songs={songs}
-            cover={song.cover}
-            name={song.name}
-            artist={song.artist}
-            active={song.active}
-            key={song.id}
-            id={song.id}
-            setCurrentSong={setCurrentSong}
-            audioRef={audioRef}
-            isPlaying={isPlaying}
-            setSongs={setSongs}
-          />
-        ))}
+      <div className="library-Songs">
+        <Reorder.Group values={songs} onReorder={setSongs}>
+          {songs.map(song => (
+            <Reorder.Item
+              value={song}
+              key={song.id}
+              dragListener={false}
+              dragControls={controls}>
+              <LibrarySong
+                songs={songs}
+                cover={song.cover}
+                name={song.name}
+                artist={song.artist}
+                active={song.active}
+                key={song.id}
+                id={song.id}
+                setCurrentSong={setCurrentSong}
+                audioRef={audioRef}
+                isPlaying={isPlaying}
+                setSongs={setSongs}
+              />
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
       </div>
     </div>
   );

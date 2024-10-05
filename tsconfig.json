@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "target": "es6",
+    "moduleResolution": "node",
+    "declaration": false,
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@/cypress/*": ["cypress/*"],
+      "@/locales/*": ["locales/*"],
+      "@/test/*": ["test/*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext", "ES2017"],
+    "typeRoots": ["node_modules/@types", "@types"]
+  },
+  "include": ["src/global.d.ts", "src/**/*"],
+  "exclude": ["node_modules"]
+}

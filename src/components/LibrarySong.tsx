@@ -1,45 +1,30 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+
 import { playAudio } from '../util';
+import { Song } from './Library';
+import { useDragControls } from 'framer-motion';
 
 type LibrarySongProps = {
   name: string;
   artist: string;
   cover: string;
   id: string;
-  setCurrentSong: (newSongs: {
-    name?: string;
-    cover?: string;
-    artist?: string;
-    audio?: string;
-    color?: string[];
-    id?: string;
-    active?: boolean;
-    currentTime?: number;
-  }) => void;
-  songs: Array<{
-    name: string;
-    cover: string;
-    artist: string;
-    audio: string;
-    color: string[];
-    id: string;
-    active: boolean;
-    currentTime?: number;
-  }>;
-  audioRef: any;
+  setCurrentSong: (song: Song) => void;
+  songs: Array<Song>;
+  audioRef: React.MutableRefObject<HTMLAudioElement>;
   isPlaying: boolean;
-  setSongs: (newSong: Array<{
-    name: string;
-    cover: string;
-    artist: string;
-    audio: string;
-    color: string[];
-    id: string;
-    active: boolean;
-    currentTime?: number;
-  }>) => void;
+  setSongs: (
+    newSong: Array<{
+      name: string;
+      cover: string;
+      artist: string;
+      audio: string;
+      color: Array<string>;
+      id: string;
+      active: boolean;
+      currentTime?: number;
+    }>,
+  ) => void;
   active: boolean;
 };
 
@@ -55,12 +40,18 @@ const LibrarySong = ({
   setSongs,
   active,
 }: LibrarySongProps) => {
-  const songSelectHandler = async () => {
+  const controls = useDragControls();
+
+  const songSelectHandler = () => {
     const selectedSong = songs.filter(state => state.id === id);
-    setCurrentSong({ ...selectedSong[0] });
-    //Set Active in library
+    try {
+      selectedSong[0] ? setCurrentSong(selectedSong[0]) : null;
+    } catch (error) {
+      console.log('🚀 ~ songSelectHandler ~ error:', error);
+    }
+    // Set Active in library
     const newSongs = songs.map(song => {
-      if (song.id === id) {
+      if (song?.id === id) {
         return {
           ...song,
           active: true,
@@ -74,16 +65,16 @@ const LibrarySong = ({
     });
     setSongs(newSongs);
 
-    //Play audio
-
-    await audioRef.current.pause();
+    // Play audio
+    audioRef.current.pause();
     playAudio(isPlaying, audioRef);
   };
 
   return (
     <div
+      onPointerDown={e => controls.start(e)}
       onClick={songSelectHandler}
-      className={`library-song ${active ? 'selected' : ''}`}>
+      className={`library-song reorder-handle ${active ? 'selected' : ''}`}>
       <img src={cover} alt="" />
       <div className="song-description">
         <h3>{name}</h3>

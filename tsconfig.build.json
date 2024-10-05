@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "exclude": ["src/**/__tests__/**/*"],
+  "include": ["src/**", "src/global.d.ts"]
+}

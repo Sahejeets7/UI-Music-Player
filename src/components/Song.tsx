@@ -1,12 +1,10 @@
-import React from 'react';
-
 type SongProps = {
   currentSong: {
     name: string;
     cover: string;
     artist: string;
     audio: string;
-    color: string[];
+    color: Array<string>;
     id: string;
     active: boolean;
     currentTime?: number;
