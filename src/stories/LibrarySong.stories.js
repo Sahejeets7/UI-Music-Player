@@ -1,4 +1,3 @@
-import React from 'react';
 import LibrarySong from '../components/LibrarySong';
 
 // Mock data
