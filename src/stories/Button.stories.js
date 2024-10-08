@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-// eslint-disable-next-line import/order
 import { fn } from '@storybook/test';
 import { Button } from './Button';
 

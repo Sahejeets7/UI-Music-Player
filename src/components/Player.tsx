@@ -69,7 +69,6 @@ const Player = ({
   setSongs,
 }: Props): JSX.Element => {
   const [activeVolume, setActiveVolume] = useState<boolean>(false);
-  // UseEffect Update List
   const activeLibraryHandler = (nextPrev: { id: string }) => {
     const newSongs = songs.map(song => {
       if (song.id === nextPrev.id) {
@@ -91,13 +90,12 @@ const Player = ({
   const trackAnim = {
     transform: `translateX(${songInfo.animationPercentage}%)`,
   };
-  // Event Handlers
+
   function getTime(time: number): string {
     return (
       Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
     );
   }
-  // const dragHandler = (e: DragEvent<HTMLAudioElement>) => {
   const dragHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const currentTime = parseFloat(target.value);
@@ -109,27 +107,21 @@ const Player = ({
   };
 
   const playSongHandler = async () => {
-    console.log('here');
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(!isPlaying);
     } else {
-      console.log('playSongHandler = else part -> ', audioRef.current);
       try {
-        console.log('🚀 ~ playSongHandler ~ audioRef:', audioRef);
         await audioRef.current?.play();
         setIsPlaying(!isPlaying);
       } catch (error) {
-        console.log('error', error);
-        // know somehow that internet is disconnected and skip calling play, show alert.
-        // catch the error and show user feedback via alert
+        console.error('error', error);
       }
     }
   };
   const skipTrackHandler = async (direction: string) => {
     const currentIndex = songs.findIndex(song => song.id === currentSong.id);
 
-    // Forward Back
     if (direction === 'skip-forward') {
       const nextSong = songs[(currentIndex + 1) % songs.length];
       if (nextSong) {

@@ -3,11 +3,6 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    // 'import/resolver': {
-    //   alias: {
-    //     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    //   },
-    // },
   },
   root: true,
   plugins: ['prettier', 'testing-library', 'eslint-comments', 'import'],

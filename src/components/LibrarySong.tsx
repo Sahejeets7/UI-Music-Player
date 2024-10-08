@@ -47,7 +47,7 @@ const LibrarySong = ({
     try {
       selectedSong[0] ? setCurrentSong(selectedSong[0]) : null;
     } catch (error) {
-      console.log('🚀 ~ songSelectHandler ~ error:', error);
+      console.error('songSelectHandler -> error: ', error);
     }
     // Set Active in library
     const newSongs = songs.map(song => {
