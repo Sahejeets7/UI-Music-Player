@@ -2,3 +2,8 @@ build
 node_modules
 dist
 __tests__
+cypress.env.json
+src/serviceWorker.js
+*.spec.*
+jest.config.ts
+*.config.js

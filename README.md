@@ -66,3 +66,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+The error message `ReferenceError: IntersectionObserver is not defined` indicates that the `IntersectionObserver` API is being used in your code, but it is not available in the current environment. This typically happens when running tests in a Node.js environment, which does not have browser APIs like `IntersectionObserver`.
+

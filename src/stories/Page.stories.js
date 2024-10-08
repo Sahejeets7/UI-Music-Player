@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { within, userEvent, expect } from '@storybook/test';
 
 import { Page } from './Page';

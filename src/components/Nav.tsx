@@ -1,8 +1,12 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
-const Nav = ({ setLibraryStatus, libraryStatus }) => {
+type LibraryProps = {
+  setLibraryStatus: (libraryStatus: boolean) => void;
+  libraryStatus: boolean;
+};
+
+const Nav = ({ setLibraryStatus, libraryStatus }: LibraryProps) => {
   const openLibraryHandler = () => {
     setLibraryStatus(!libraryStatus);
   };
@@ -12,10 +16,9 @@ const Nav = ({ setLibraryStatus, libraryStatus }) => {
       <h1>Vibes</h1>
       <button
         className={libraryStatus ? 'library-active' : ''}
-        onClick={openLibraryHandler}
-      >
+        onClick={openLibraryHandler}>
         Library
-        <FontAwesomeIcon icon={faMusic}></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faMusic} />
       </button>
     </nav>
   );

@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
+
 import './styles/app.scss';
 import Player from './components/Player';
 import Song from './components/Song';
@@ -9,7 +9,6 @@ import chillhop from './data';
 import { playAudio } from './util';
 
 function App() {
-  //Ref
   const audioRef = useRef(null);
 
   const [songs, setSongs] = useState(chillhop());
@@ -38,9 +37,9 @@ function App() {
       volume: e.target.volume,
     });
   };
-  const songEndHandler = async () => {
+  const songEndHandler = () => {
     let currentIndex = songs.findIndex(song => song.id === currentSong.id);
-    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     playAudio(isPlaying, audioRef);
   };
   return (
@@ -71,7 +70,8 @@ function App() {
         onTimeUpdate={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
-        onEnded={songEndHandler}></audio>
+        onEnded={songEndHandler}
+      />
     </div>
   );
 }

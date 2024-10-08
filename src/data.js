@@ -1,4 +1,5 @@
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+
 function chillHop() {
   return [
     {
@@ -61,7 +62,6 @@ function chillHop() {
       id: uuidv4(),
       active: false,
     },
-    //ADD MORE HERE
   ];
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { fn } from '@storybook/test';
 import { Button } from './Button';
 

@@ -4,30 +4,72 @@
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
   ],
   "plugins": [
     "react",
     "import",
-    "jsx-a11y"
+    "jsx-a11y",
+    "@typescript-eslint",
+    "eslint-comments",
+    "prettier",
+    "testing-library"
   ],
   "rules": {
+    "react/self-closing-comp": "error",
+    "prettier/prettier": "error",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "react-hooks/exhaustive-deps": "error",
+    "id-length": "off",
+    "jest/valid-expect-in-promise": "error",
+    "cypress/no-unnecessary-waiting": "off",
+    "complexity": ["error", { "max": 40 }],
+    "max-statements": ["error", { "max": 50 }],
+    "no-undefined": "off",
+    "no-undef": "error",
+    "no-var": "error",
+    "no-console": "error",
     "react/prop-types": 0,
-    "indent": [
-      "error",
-      2
-    ],
+    "indent": ["error", 2],
     "linebreak-style": 0,
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "quotes": ["error", "single"],
     "no-duplicate-imports": "error",
     "eslint-plugin-import/no-unused-modules": "off",
-    "object-curly-spacing": [
+    "object-curly-spacing": ["error", "always"],
+    "curly": "error",
+    "require-await": "error",
+    "eslint-comments/no-unlimited-disable": "error",
+    "@typescript-eslint/no-unused-vars": [
       "error",
-      "always"
-    ]
+      { "ignoreRestSiblings": true }
+    ],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      { "ts-ignore": "allow-with-description" }
+    ],
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "react/jsx-pascal-case": ["error", { "allowNamespace": true }],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      { "props": "never", "children": "never" }
+    ],
+    "import/no-unresolved": "error",
+    "no-inline-comments": "off",
+    "eslint-plugin-vue/no-static-inline-styles": "off",
+    "import/no-extraneous-dependencies": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external"], ["parent", "sibling"], "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "import/newline-after-import": "error",
+    "default-param-last": "error"
   },
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -44,6 +86,19 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
     }
-  }
+  },
+  "globals": {
+    "Maybe": true,
+    "Falsy": true,
+    "JSX": true,
+    "__DEV__": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": ["coverage", "reports"]
 }
