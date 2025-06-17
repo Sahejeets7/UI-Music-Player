@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     <App />

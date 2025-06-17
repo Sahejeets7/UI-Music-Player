@@ -5,12 +5,19 @@ module.exports = {
     },
   },
   root: true,
-  plugins: ['prettier', 'testing-library', 'eslint-comments', 'import'],
+  plugins: [
+    'prettier',
+    'testing-library',
+    'import',
+    'testing-library',
+    'jest',
+    'security',
+    'sonarjs',
+  ],
   globals: {
     Maybe: true,
     Falsy: true,
     JSX: true,
-    GDRequest: true,
     __DEV__: true,
     _trfq: true,
     HivemindExperiment: true,
@@ -38,7 +45,7 @@ module.exports = {
     'no-duplicate-imports': ['error', { includeExports: true }],
     curly: 'error',
     'require-await': 'error',
-    'eslint-comments/no-unlimited-disable': 'error',
+    'eslint-comments/no-unlimited-disable': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       { ignoreRestSiblings: true },
@@ -65,8 +72,41 @@ module.exports = {
     ],
     'import/newline-after-import': 'error',
     'default-param-last': 'error',
+    'no-extra-semi': 'error',
+    'import/no-unused-modules': 'error',
+    camelcase: ['error', { properties: 'always' }],
+    'no-magic-numbers': [
+      'error',
+      {
+        ignore: [-1, 0, 1, 2, 60, 10],
+        ignoreArrayIndexes: true,
+        ignoreDefaultValues: true,
+        detectObjects: false,
+      },
+    ],
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: 'return' },
+      { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+      {
+        blankLine: 'any',
+        prev: ['const', 'let', 'var'],
+        next: ['const', 'let', 'var'],
+      },
+    ],
+    'lines-between-class-members': ['error', 'always'],
+    'prefer-const': 'error',
+    'keyword-spacing': ['error', { before: true, after: true }],
+    'max-depth': ['error', 4],
+    'max-lines': [
+      'error',
+      { max: 300, skipBlankLines: true, skipComments: true },
+    ],
+    'max-len': ['error', { code: 100, ignoreComments: true, ignoreUrls: true }],
+    'max-params': ['error', 4],
+    'max-statements-per-line': ['error', { max: 1 }],
   },
-  ignorePatterns: ['coverage', 'reports'],
+  ignorePatterns: ['coverage', 'reports', '.eslintrc.js', '.eslintrc.json'],
   overrides: [
     {
       files: ['**/?(*.)+(cy).[jt]s?(x)'],
@@ -102,6 +142,11 @@ module.exports = {
       files: ['*.ts?(x)'],
       parserOptions: {
         project: './tsconfig.json',
+      },
+      env: {
+        es6: true,
+        browser: true,
+        node: true,
       },
       rules: {
         '@typescript-eslint/strict-boolean-expressions': 'error',
